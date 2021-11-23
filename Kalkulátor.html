@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form name="feecalculator">
+
+        <label>Adja meg a várost</label>
+        <select id="town" onclick="popMenu(document.feecalculator.town)">
+            <option>Válaszon várost</option>
+        </select>
+
+        <label>Adja meg a csomag sulyát (kg):</label>
+        <input type="number" name="weight" id="weight">
+        <input type="button" value="kalkulál!"
+            onclick="feeCalculator(document.feecalculator.town.value, document.feecalculator.weight.value)">
+    </form>
+
+    <script>
+        function popMenu(t) {
+            var townlist = [['budapest', 232],['szeged', 230],['miskolc', 144],['pécs', 470],['gyor', 377],['nyiregyhaza', 50],['kecskemet', 184],['szekesfehervar', 317],['szombathely', 458],['szolnok', 130]];
+
+            if (t.options.length == 1){
+
+                for(var i = 0; i<townlist.length; i++){
+                    var town = townlist[i];
+                    var el = document.createElement("option");
+                    el.textContent = town[0];
+                    el.value = town[1];
+                    t.appendChild(el);
+                }
+            }
+        }
+
+        function feeCalculator(d, w) {
+
+
+            var weightFee = w * 100;
+            var distanceFee= d * 150;
+            var total = weightFee + distanceFee + 2000;
+
+            alert("Alapdíj: 2000Ft," + "Súlydíj:" + weightFee + "Ft," + "Km díj:" + distanceFee + "Ft," + "Összesen:" + total + "Ft")
+        }
+    </script>
+</body>
+
+</html>
